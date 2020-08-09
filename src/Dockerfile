@@ -6,7 +6,7 @@ ENV HOME /root
 
 # Package versions we want to install
 ENV NVM_DIR $HOME/.nvm
-ENV NODE_VERSION 12.18.2
+ENV NODE_VERSION 12.18.3
 ENV YARN_VERSION 1.22.4
 
 # Install AWS Amplify requirements + any desired packages
@@ -29,12 +29,12 @@ RUN yum -y update && \
 RUN mkdir -p $NVM_DIR \
     && curl --silent -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 RUN source $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
+    && nvm install $NODE_VERSION --latest-npm \
     && nvm alias default $NODE_VERSION \
     && nvm use default
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-# Install yarn (https://yarnpkg.com/en/docs/install#alternatives-tab)
+# Install yarn (https://classic.yarnpkg.com/en/docs/install#alternatives-stable)
 RUN curl --silent -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
 ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
@@ -44,7 +44,7 @@ RUN npm --version
 RUN yarn --version
 RUN aws --version
 
-# Set working directory to home
+# TODO: Set working directory to home?
 # WORKDIR $HOME
 
 ENTRYPOINT [ "bash", "-c" ]
