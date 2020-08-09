@@ -1,0 +1,32 @@
+{
+  "name": "amazonlinux-plus",
+  "version": "0.0.1",
+  "description": "Customized build image based on `amazonlinux` docker images",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run :build && npm run :run",
+    "clear": "npm run :stop && npm run :rm && npm run :rmi",
+    ":build": "docker build src --tag 'amazonlinux-plus'",
+    ":run": "docker run -it amazonlinux-plus",
+    ":ps": "docker ps -a --filter 'ancestor=amazonlinux-plus'",
+    ":images": "docker images --filter 'reference=amazonlinux-plus'",
+    ":stop": "docker stop $(docker ps -aq --filter 'ancestor=amazonlinux-plus')",
+    ":rm": "docker rm -v $(docker ps -aq --filter 'ancestor=amazonlinux-plus')",
+    ":rmi": "docker rmi $(docker images -q --filter 'reference=amazonlinux-plus')"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilio-martinez/amazonlinux-plus.git"
+  },
+  "keywords": [
+    "docker",
+    "aws",
+    "amazonlinux"
+  ],
+  "author": "Emilio Martinez <e.marticor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emilio-martinez/amazonlinux-plus/issues"
+  },
+  "homepage": "https://github.com/emilio-martinez/amazonlinux-plus#readme"
+}
