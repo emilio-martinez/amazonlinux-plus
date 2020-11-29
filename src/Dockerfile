@@ -6,7 +6,7 @@ ENV HOME /root
 
 # Package versions we want to install
 ENV NVM_DIR $HOME/.nvm
-ENV NODE_VERSION 12.19.1
+ENV NODE_VERSION 12.20.0
 ENV YARN_VERSION 1.22.5
 
 # Install AWS Amplify requirements + any desired packages
